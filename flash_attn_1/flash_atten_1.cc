@@ -108,13 +108,13 @@ int main(int argc, char** argv) {
   copy_matrix<N, dim>(O, O_1);
 
 
+  fill_elements<Tr>(l, 0);
+  fill_elements<Tr>(m, INF_NEG);
   int Tc = N / Bc;
   int Tr = N / Br;
   for (int i = 0; i < Tc; ++i) {
     float (*k_block)[dim] = K + i * Bc;
     float (*v_block)[dim] = V + i * Bc;
-    fill_elements<Tr>(l, 0);
-    fill_elements<Tr>(m, INF_NEG);
     for (int j = 0; j < Tr; ++j) {
       float (*q_block)[dim] = Q + j * Br;
       float (*o_block)[dim] = O + j * Br;
