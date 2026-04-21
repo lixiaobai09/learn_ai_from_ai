@@ -546,7 +546,7 @@ $$\text{MHA} = \sum_i A_i\,c_{KV}\,\widehat{W}_i^O$$
 | Sinusoidal（原版 Transformer） | 在 embedding 上直接**加**一个位置向量 | 外推到更长序列效果差 |
 | Learned absolute | 每个位置学一个向量 | 长度固定，不能超出训练长度 |
 | **RoPE**（RoFormer, 2021） | 对 Q、K 做**位置相关的旋转** | 外推能力较好、可解释性强 |
-| ALiBi | 直接在注意力分数上加 `-m·|i-j|` 惩罚 | 简单但表达力略受限 |
+| ALiBi | 直接在注意力分数上加 $-m\cdot \lvert i-j \rvert$ 惩罚 | 简单但表达力略受限 |
 
 LLaMA、Qwen、DeepSeek 等主流开源 LLM 现在**几乎都用 RoPE**。
 
@@ -697,7 +697,7 @@ $$Q'_m = R_m\,Q_m,\quad K'_n = R_n\,K_n$$
 
 注意力分数：
 
-$$Q'^{\top}_m K'_n = Q_m^\top R_m^\top R_n K_n = Q_m^\top R_{n-m} K_n$$
+$$Q_m^{\prime\top} K'_n = Q_m^\top R_m^\top R_n K_n = Q_m^\top R_{n-m} K_n$$
 
 （这里用到旋转矩阵的性质：`R_m^T R_n = R_{n-m}`——两次旋转的合成等于"差角"的一次旋转。）
 
